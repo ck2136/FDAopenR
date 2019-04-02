@@ -1,16 +1,29 @@
 #' find_ndc Function: Find ndc from FDA ndc database
 #'
-#' @param src           String describing the source (e.g. \code{"fda"})
+#' \code{find_ndc} returns a list of items after connecting to the openFDA API.
+#'
+#' @seealso             \url{https://open.fda.gov/apis/drug/ndc/} for the actual
+#' API description from openFDA. \code{\link{httr}} for accessing API.
+#' @param src           String describing the source (e.g. \code{"fda"}).
 #' @param ndc           Integer describing the NDC number of drug of interest
-#'                      (e.g. \code{"fda"})
+#'   (e.g. \code{"fda"})
 #' @param bname         String indicating brand name (e.g. \code{"lorazepam"})
 #' @param gname         String indicating generic name (e.g. \code{"lorazepam"})
 #' @param dea_schedule  Integer indicating class(e.g. \code{"1"})
-#' @param limit         Integer indicating limit on how many items to limit in the result
-#'                      (e.g. \code{"1"})
-#' @param query         String indicating actual \code{httr::GET()} query to the API
+#' @param limit         Integer indicating limit on how many items to limit in
+#'   the result (e.g. \code{"1"})
+#' @param query         String indicating actual \code{httr::GET()} query to the
+#'   API
 #' @param ...           Additional parameters specified (TBD)
 #' @return A list with components based on the parameters specified.
+#' @examples
+#' find_drug(src="fda", ndc=687889736)
+#' find_drug(src="fda", bname="Acetaminophen")
+#' find_drug(src="fda", gname="Codeine")
+#'
+#' \dontrun{
+#'   find_drug(ndc="687889736")
+#' }
 #' @export
 find_drug <- function(
   src="fda",

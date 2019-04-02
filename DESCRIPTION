@@ -6,9 +6,25 @@ Authors@R: c(
     person("Chong", "Kim", email = "chong.kim@ucdenver.edu", role = c("aut", "cre")))
 Description: This package provides tools for finding relevant 
     information about Drugs, Therapies, Devices, and Foods.
-Depends: R (>= 3.5.0)
-Imports: httr (>= 1.3.1)
+Depends: R          (>= 3.5.0)
+Imports: httr       (>= 1.3.1),
+         rvest      (>= 0.3.2),
+         dplyr      (>= 0.8.0.0),
+         jsonlite   (>= 1.6.0),
+         xml2       (>= 1.2.0),
+         methods    (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Collate: 
+    'FDAopenR-package.R'
+    'class-FDA.R'
+    'class-Device.R'
+    'class-Drug.R'
+    'class-Food.R'
+    'class-Other.R'
+    'extractFDA.R'
+    'find_drug.R'
+    'listSF.R'
+    'ndcToString.R'
