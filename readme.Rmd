@@ -63,51 +63,51 @@ other1 <- new(Class="Other",
 #### Convert NDC numeric to NDC string
 
 ```{r ndcToString, message=FALSE, warning=FALSE, fig.height=9.5, fig.width=9.5}
-drug1 %>% str
+drug1@ndcquery 
 drug1 <- ndcToString(drug1)
-drug1 %>% str
+drug1@ndcquery
 #ndcToString(device1) # this will be an error!
 other1 <- ndcToString(other1)
-other1 %>% str
+other1 %>% str(max.level=2)
 ```
 
 #### Search Field 
 
 ```{r searchField, message=FALSE, warning=FALSE, fig.height=9.5, fig.width=9.5}
-listSF(drug1,"event") 
-listSF(drug1,"label") 
-listSF(drug1,"ndc") 
+listSF(drug1,"event") %>% head
+listSF(drug1,"label") %>% head
+listSF(drug1,"ndc") %>% head
 
-listSF(device1,"510k") 
-listSF(device1,"classification") 
-listSF(device1,"enforcement") 
-listSF(device1,"event") 
-listSF(device1,"pma") 
-listSF(device1,"recall") 
-listSF(device1,"registrationlisting") 
-listSF(device1,"udi") 
+listSF(device1,"510k") %>% head
+listSF(device1,"classification") %>% head
+listSF(device1,"enforcement") %>% head
+listSF(device1,"event") %>% head
+listSF(device1,"pma") %>% head
+listSF(device1,"recall") %>% head
+listSF(device1,"registrationlisting") %>% head
+listSF(device1,"udi") %>% head
 
-listSF(food1,"enforcement") 
-listSF(food1,"event") 
+listSF(food1,"enforcement") %>% head
+listSF(food1,"event") %>% head
 
-listSF(other1) 
+listSF(other1) %>% head
 ```
 
 #### Extract FDA information
 
 ```{r FDAinfo, message=FALSE, warning=FALSE, fig.height=9.5, fig.width=9.5}
-extractFDA(drug1,"event","receivedate:[20040101+TO+20081231]&limit=15") %>% str
-extractFDA(drug1,"ndc", "finished:true&limit=3") %>% str
+extractFDA(drug1,"event","receivedate:[20040101+TO+20081231]&limit=15")[1:5,1:5]
+extractFDA(drug1,"ndc", "finished:true&limit=3")[1:5,1:5] 
 
-extractFDA(device1,"registrationlisting",'')
-extractFDA(device1,"udi",'public_version_status:Update')
-extractFDA(device1,"udi",'has_serial_number:truelimit=10')
-extractFDA(device1,"pma",'decision_code:APPR&limit=3')
+extractFDA(device1,"registrationlisting",'')[1:5,1:5] 
+extractFDA(device1,"udi",'public_version_status:Update')[1:5,1:5] 
+extractFDA(device1,"udi",'has_serial_number:truelimit=10')[1:5,1:5] 
+extractFDA(device1,"pma",'decision_code:APPR&limit=3')[1:5,1:5] 
 
-extractFDA(food1, "enforcement", 'report_date:[20040101+TO+20131231]&limit=3')
-extractFDA(food1, "event", 'date_created:[20040101+TO+20131231]&limit=5')
+extractFDA(food1, "enforcement", 'report_date:[20040101+TO+20131231]&limit=3')[1:5,1:5] 
+extractFDA(food1, "event", 'date_created:[20040101+TO+20131231]&limit=5')[1:5,1:5] 
 
-extractFDA(other1, query='marketing_start_date:[20040101+TO+20131231]&limit=5')
+extractFDA(other1, query='marketing_start_date:[20040101+TO+20131231]&limit=5')[1:5,1:5] 
 ```
 
 ## Authors
