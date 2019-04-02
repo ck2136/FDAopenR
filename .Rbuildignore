@@ -1,0 +1,10 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^NEWS\.md$
+^report$
+^notes$
+^tests$
+^scripts$
+^.*Rmd$
+Makefile
+readme.md
