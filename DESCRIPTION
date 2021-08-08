@@ -24,6 +24,7 @@ Collate:
     'class-Drug.R'
     'class-Food.R'
     'class-Other.R'
+    'class-Tobacco.R'
     'extractFDA.R'
     'find_drug.R'
     'listSF.R'
