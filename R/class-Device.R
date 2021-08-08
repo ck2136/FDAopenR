@@ -6,13 +6,14 @@
 #' @include class-FDA.R
 #' @seealso             \url{https://open.fda.gov/apis/drug/ndc/} for the actual
 #' API description from openFDA. \code{\link{jsonlite}} for accessing API.
-#' @slot  ftTab         data.frame object of 510(k) 
+#' @slot  ftTab         data.frame object of 510(k)
 #' @slot  classTab      data.frame object of Classification
 #' @slot  recTab        data.frame object of Recall Enforcement Reports
 #' @slot  aeTab         data.frame object of Adverse Events.
 #' @slot  pmaTab        data.frame object of Pre-market Approval
 #' @slot  rcTab         data.frame object of Recalls
 #' @slot  rlTab         data.frame object of Registrations and Listings
+#' @slot  cov19Tab      data.frame object of COVID-19 Serological Testing Evaluations
 #' @slot  udiTab        data.frame object of Unique Device Identifier
 #' @return An object of a class Device
 #' @examples

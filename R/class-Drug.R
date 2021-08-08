@@ -8,8 +8,9 @@
 #' API description from openFDA. \code{\link{jsonlite}} for accessing API.
 #' @slot  aeTab         data.frame object of Adverse Events.
 #' @slot  prodTab       data.frame object of Product Information
-#' @slot  ndcTab        data.frame object of NDC information 
-#' @slot  reTab         data.frame object of Recall Enforcement 
+#' @slot  ndcTab        data.frame object of NDC information
+#' @slot  reTab         data.frame object of Recall Enforcement
+#' @slot  dafTab        data.frame object of Drugs at FDA
 #' @slot  ndc           Numeric ndc value. This will be converted later using the
 #' \code{\link{ndcToString}} method into \code{Obj@ndcquery} value.
 #' @slot  ndcquery      String of ndc value converted using \code{\link{ndcToString}}.
@@ -27,6 +28,7 @@ Drug <- setClass(Class = "Drug",
                                        prodTab='data.frame',
                                        ndcTab='data.frame',
                                        reTab='data.frame',
+                                       dafTab='data.frame',
                                        ndc="numeric",
                                        ndcquery="character"
          ),

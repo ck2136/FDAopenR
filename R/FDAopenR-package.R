@@ -1,5 +1,5 @@
-#'@importFrom dplyr       %>% 
-#'@importFrom jsonlite    fromJSON 
+#'@importFrom dplyr       %>%
+#'@importFrom jsonlite    fromJSON
 #'@importFrom rvest       html_nodes html_text
 #'@importFrom xml2        read_html
 #'@importFrom methods     new
@@ -9,7 +9,7 @@ NULL
 
 #' \pkg{FDAopenR}: R package for accessing and manipulating openFDA API.
 #'
-#' INSERT HERE DESCRIPTION OF THE PACKAGE 
+#' INSERT HERE DESCRIPTION OF THE PACKAGE
 #'
 #' @section FDAopenR classess and functions:
 #' The main classes are:
@@ -18,7 +18,8 @@ NULL
 #'   \code{Drug}        \tab FDA tested Drug class \cr
 #'   \code{Device}      \tab Devices class \cr
 #'   \code{Food}        \tab Food class \cr
-#'   \code{Other}       \tab Other non Food, Drug, and Device classes}
+#'   \code{Other}       \tab Other non Food, Drug, and Device classes} \cr
+#'   \code{Tobacco}     \tab Tobacco classes}
 #' The main methods are:
 #' \tabular{ll}{
 #'   \code{listSF}          \tab List Search Field for Each Classes \cr
@@ -28,7 +29,7 @@ NULL
 #' @name FDAopenR-pkg
 #' @seealso \href{https://open.fda.gov/apis/}{openFDA API}
 #' @note
-#' Development of this package was kindly supported by 
+#' Development of this package was kindly supported by
 #' FUNDER under THIS GRANT NUMBER
 #' @references
 #' Kim et al. (2019). \emph{R package for  accessing and manipulating
