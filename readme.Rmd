@@ -12,8 +12,8 @@ knitr::opts_chunk$set(collapse=TRUE, comment="##", fig.retina=2, fig.path = "REA
 `FDAopenR` : R package for accessing and manipulating openFDA API.
 
 <!-- badges: start -->
-  [![Travis build status](https://app.travis-ci.com/ck2136/FDAopenR.svg?branch=master)](https://travis-ci.com/ck2136/FDAopenR)
-  <!-- [![Codecov test coverage](https://codecov.io/gh//dplyr/branch/master/graph/badge.svg)](https://codecov.io/gh/tidyverse/dplyr?branch=master) -->
+[![Travis build status](https://app.travis-ci.com/ck2136/FDAopenR.svg?branch=master)](https://travis-ci.com/ck2136/FDAopenR)
+[![codecov](https://codecov.io/gh/ck2136/FDAopenR/branch/master/graph/badge.svg?token=PNCASBPWB1)](https://codecov.io/gh/ck2136/FDAopenR)
 <!-- badges: end -->
 
 The following functions are implemented:

@@ -29,3 +29,5 @@ Collate:
     'find_drug.R'
     'listSF.R'
     'ndcToString.R'
+Suggests: 
+    covr

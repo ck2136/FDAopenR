@@ -7,7 +7,7 @@
 
 [![Travis build
 status](https://app.travis-ci.com/ck2136/FDAopenR.svg?branch=master)](https://travis-ci.com/ck2136/FDAopenR)
-<!-- [![Codecov test coverage](https://codecov.io/gh//dplyr/branch/master/graph/badge.svg)](https://codecov.io/gh/tidyverse/dplyr?branch=master) -->
+[![codecov](https://codecov.io/gh/ck2136/FDAopenR/branch/master/graph/badge.svg?token=PNCASBPWB1)](https://codecov.io/gh/ck2136/FDAopenR)
 <!-- badges: end -->
 
 The following functions are implemented:
@@ -164,58 +164,88 @@ extractFDA(drug1,"event","receivedate:[20040101+TO+20081231]&limit=15")[1:5,1:5]
 ## 4               102       NA             <NA> USA/97/02459/LAS               102
 ## 5               102       NA             <NA>    1997002193-FJ               102
 extractFDA(drug1,"ndc", "finished:true&limit=3")[1:5,1:5] 
-##      product_ndc        generic_name                              labeler_name                           brand_name
-## 1      72342-150             Alcohol                        J.R. Watkins, LLC.            Hand Sanitizer Peppermint
-## 2      72476-916 Diphenhydramine HCl Care One (Retail Business Services, LLC.) Nighttime Sleep Aid Maximum Strength
-## 3      72572-170    Fentanyl Citrate                              Civica, Inc.                     Fentanyl Citrate
-## NA          <NA>                <NA>                                      <NA>                                 <NA>
-## NA.1        <NA>                <NA>                                      <NA>                                 <NA>
-##      brand_name_suffix
-## 1           Peppermint
-## 2     Maximum Strength
-## 3                 <NA>
-## NA                <NA>
-## NA.1              <NA>
+##      product_ndc marketing_end_date                  generic_name                     labeler_name
+## 1      0409-6139           20220801                         water                    Hospira, Inc.
+## 2      71919-080               <NA> ARISTOLOCHIA CYMBIFERA FLOWER  Washington Homeopathic Products
+## 3      74028-355               <NA>             Isopropyl Alcohol Creative Consumer Products, Inc.
+## NA          <NA>               <NA>                          <NA>                             <NA>
+## NA.1        <NA>               <NA>                          <NA>                             <NA>
+##                  brand_name
+## 1             Sterile Water
+## 2    Aristolochia milhomens
+## 3     Dionis Hand Sanitizer
+## NA                     <NA>
+## NA.1                   <NA>
 
 extractFDA(device1,"registrationlisting",'')[1:5,1:5] 
-##                                proprietary_name
-## 1    Nimbus RF Multi-tined Expandable Electrode
-## NA                                         NULL
-## NA.1                                       NULL
-## NA.2                                       NULL
-## NA.3                                       NULL
-##                                                                                                   establishment_type
-## 1    Develop Specifications But Do Not Manufacture At This Facility, Complaint File Establishment per 21 CFR 820.198
-## NA                                                                                                              NULL
-## NA.1                                                                                                            NULL
-## NA.2                                                                                                            NULL
-## NA.3                                                                                                            NULL
+##                 proprietary_name
+## 1    Sit-up bed supporter ladder
+## NA                          NULL
+## NA.1                        NULL
+## NA.2                        NULL
+## NA.3                        NULL
+##                                                                                                                                                                 establishment_type
+## 1    Manufacture Medical Device, Manufacture Medical Device for Another Party (Contract Manufacturer), Export Device to the United States But Perform No Other Operation on Device
+## NA                                                                                                                                                                            NULL
+## NA.1                                                                                                                                                                          NULL
+## NA.2                                                                                                                                                                          NULL
+## NA.3                                                                                                                                                                          NULL
 ##      registration.registration_number registration.fei_number registration.status_code
-## 1                          3017423051              3017423051                        1
+## 1                          3012946064              3012946064                        1
 ## NA                               <NA>                    <NA>                     <NA>
 ## NA.1                             <NA>                    <NA>                     <NA>
 ## NA.2                             <NA>                    <NA>                     <NA>
 ## NA.3                             <NA>                    <NA>                     <NA>
-##      registration.initial_importer_flag registration.reg_expiry_date_year registration.name registration.address_line_1
-## 1                                     N                              2021   STRATUS MEDICAL               32303 FM 2978
-## NA                                 <NA>                              <NA>              <NA>                        <NA>
-## NA.1                               <NA>                              <NA>              <NA>                        <NA>
-## NA.2                               <NA>                              <NA>              <NA>                        <NA>
-## NA.3                               <NA>                              <NA>              <NA>                        <NA>
-##      registration.address_line_2 registration.city registration.state_code registration.iso_country_code
-## 1                                         Magnolia                      TX                            US
-## NA                          <NA>              <NA>                    <NA>                          <NA>
-## NA.1                        <NA>              <NA>                    <NA>                          <NA>
-## NA.2                        <NA>              <NA>                    <NA>                          <NA>
-## NA.3                        <NA>              <NA>                    <NA>                          <NA>
-##      registration.zip_code registration.postal_code registration.owner_operator.firm_name
-## 1                    77354                                                Stratus Medical
-## NA                    <NA>                     <NA>                                  <NA>
-## NA.1                  <NA>                     <NA>                                  <NA>
-## NA.2                  <NA>                     <NA>                                  <NA>
-## NA.3                  <NA>                     <NA>                                  <NA>
+##      registration.initial_importer_flag registration.reg_expiry_date_year                      registration.name
+## 1                                     N                              2021 NINGBO GIBBON SPORTS CULTURE CO., LTD.
+## NA                                 <NA>                              <NA>                                   <NA>
+## NA.1                               <NA>                              <NA>                                   <NA>
+## NA.2                               <NA>                              <NA>                                   <NA>
+## NA.3                               <NA>                              <NA>                                   <NA>
+##                      registration.address_line_1 registration.address_line_2 registration.city registration.state_code
+## 1    1001,1#, SHANGDONG BUSINESS CENTRE, YINZHOU                               Ningbo Zhejiang                        
+## NA                                          <NA>                        <NA>              <NA>                    <NA>
+## NA.1                                        <NA>                        <NA>              <NA>                    <NA>
+## NA.2                                        <NA>                        <NA>              <NA>                    <NA>
+## NA.3                                        <NA>                        <NA>              <NA>                    <NA>
+##      registration.iso_country_code registration.zip_code registration.postal_code registration.us_agent.name
+## 1                               CN                                         315040                 Fanny Zhao
+## NA                            <NA>                  <NA>                     <NA>                       <NA>
+## NA.1                          <NA>                  <NA>                     <NA>                       <NA>
+## NA.2                          <NA>                  <NA>                     <NA>                       <NA>
+## NA.3                          <NA>                  <NA>                     <NA>                       <NA>
+##      registration.us_agent.business_name registration.us_agent.bus_phone_area_code registration.us_agent.bus_phone_num
+## 1               J & F Technology Service                                       909                             5100201
+## NA                                  <NA>                                      <NA>                                <NA>
+## NA.1                                <NA>                                      <NA>                                <NA>
+## NA.2                                <NA>                                      <NA>                                <NA>
+## NA.3                                <NA>                                      <NA>                                <NA>
+##      registration.us_agent.bus_phone_extn registration.us_agent.fax_area_code registration.us_agent.fax_num
+## 1                                                                                                          
+## NA                                   <NA>                                <NA>                          <NA>
+## NA.1                                 <NA>                                <NA>                          <NA>
+## NA.2                                 <NA>                                <NA>                          <NA>
+## NA.3                                 <NA>                                <NA>                          <NA>
+##      registration.us_agent.email_address registration.us_agent.address_line_1 registration.us_agent.address_line_2
+## 1                     info@jf-yiliao.com             19838 Moon Shadow Circle                                     
+## NA                                  <NA>                                 <NA>                                 <NA>
+## NA.1                                <NA>                                 <NA>                                 <NA>
+## NA.2                                <NA>                                 <NA>                                 <NA>
+## NA.3                                <NA>                                 <NA>                                 <NA>
+##      registration.us_agent.city registration.us_agent.state_code registration.us_agent.iso_country_code
+## 1                        Walnut                               CA                                     US
+## NA                         <NA>                             <NA>                                   <NA>
+## NA.1                       <NA>                             <NA>                                   <NA>
+## NA.2                       <NA>                             <NA>                                   <NA>
+## NA.3                       <NA>                             <NA>                                   <NA>
+##      registration.us_agent.zip_code registration.us_agent.postal_code  registration.owner_operator.firm_name
+## 1                             91789                                   NINGBO GIBBON SPORTS CULTURE CO., LTD.
+## NA                             <NA>                              <NA>                                   <NA>
+## NA.1                           <NA>                              <NA>                                   <NA>
+## NA.2                           <NA>                              <NA>                                   <NA>
+## NA.3                           <NA>                              <NA>                                   <NA>
 ##      registration.owner_operator.owner_operator_number registration.owner_operator.official_correspondent.first_name
-## 1                                             10077915                                                          Lisa
+## 1                                             10053544                                                        Xudong
 ## NA                                                <NA>                                                          <NA>
 ## NA.1                                              <NA>                                                          <NA>
 ## NA.2                                              <NA>                                                          <NA>
@@ -227,7 +257,7 @@ extractFDA(device1,"registrationlisting",'')[1:5,1:5]
 ## NA.2                                                              <NA>
 ## NA.3                                                              <NA>
 ##      registration.owner_operator.official_correspondent.last_name
-## 1                                                       Pelletier
+## 1                                                            Feng
 ## NA                                                           <NA>
 ## NA.1                                                         <NA>
 ## NA.2                                                         <NA>
@@ -239,37 +269,37 @@ extractFDA(device1,"registrationlisting",'')[1:5,1:5]
 ## NA.2                                                                       <NA>
 ## NA.3                                                                       <NA>
 ##      registration.owner_operator.official_correspondent.phone_number
-## 1                                                    x-385-7073029-x
+## 1                                                  86-574-83031127-x
 ## NA                                                              <NA>
 ## NA.1                                                            <NA>
 ## NA.2                                                            <NA>
 ## NA.3                                                            <NA>
 ##      registration.owner_operator.contact_address.address_1 registration.owner_operator.contact_address.address_2
-## 1                                            32303 FM 2978                                                      
+## 1              1001,1#, SHANGDONG BUSINESS CENTRE, YINZHOU                                                      
 ## NA                                                    <NA>                                                  <NA>
 ## NA.1                                                  <NA>                                                  <NA>
 ## NA.2                                                  <NA>                                                  <NA>
 ## NA.3                                                  <NA>                                                  <NA>
 ##      registration.owner_operator.contact_address.city registration.owner_operator.contact_address.state_code
-## 1                                            Magnolia                                                     TX
+## 1                                              Ningbo                                                  CN-ZJ
 ## NA                                               <NA>                                                   <NA>
 ## NA.1                                             <NA>                                                   <NA>
 ## NA.2                                             <NA>                                                   <NA>
 ## NA.3                                             <NA>                                                   <NA>
 ##      registration.owner_operator.contact_address.state_province
-## 1                                                              
+## 1                                                      Zhejiang
 ## NA                                                         <NA>
 ## NA.1                                                       <NA>
 ## NA.2                                                       <NA>
 ## NA.3                                                       <NA>
 ##      registration.owner_operator.contact_address.iso_country_code
-## 1                                                              US
+## 1                                                              CN
 ## NA                                                           <NA>
 ## NA.1                                                         <NA>
 ## NA.2                                                         <NA>
 ## NA.3                                                         <NA>
 ##      registration.owner_operator.contact_address.postal_code pma_number k_number
-## 1                                                      77354             K121773
+## 1                                                     315040                    
 ## NA                                                      <NA>       <NA>     <NA>
 ## NA.1                                                    <NA>       <NA>     <NA>
 ## NA.2                                                    <NA>       <NA>     <NA>
@@ -282,12 +312,12 @@ extractFDA(device1,"udi",'public_version_status:Update')[1:5,1:5]
 ## NA.2                   <NA>                                             <NA>          <NA>              <NA>  <NA>
 ## NA.3                   <NA>                                             <NA>          <NA>              <NA>  <NA>
 extractFDA(device1,"pma",'decision_code:APPR&limit=3')[1:5,1:5] 
-##      pma_number supplement_number                  applicant                street_1 street_2
-## 1       P810002              S050     St. Jude Medical, Inc.      ONE LILLEHEI PLAZA         
-## 2       P130009              S057 EDWARDS LIFESCIENCES, LLC.         One Edwards Way         
-## 3       P150013              S001 Agilent Technologies, Inc. 5301 Stevens Creek Blvd         
-## NA         <NA>              <NA>                       <NA>                    <NA>     <NA>
-## NA.1       <NA>              <NA>                       <NA>                    <NA>     <NA>
+##      pma_number supplement_number                      applicant           street_1 street_2
+## 1       P090016              S018        MERZ NORTH AMERICA, INC 4133 COURTNEY ROAD SUITE 10
+## 2       P810017              S001  ADVANCED MEDICAL OPTICS, INC.    2525 DUPONT DR.         
+## 3       P010030              S141 ZOLL MANUFACTURING CORPORATION       121 GAMMA DR         
+## NA         <NA>              <NA>                           <NA>               <NA>     <NA>
+## NA.1       <NA>              <NA>                           <NA>               <NA>     <NA>
 
 extractFDA(food1, "enforcement", 'report_date:[20040101+TO+20131231]&limit=3')[1:5,1:5] 
 ##            country    city                      address_1
@@ -304,31 +334,37 @@ extractFDA(food1, "enforcement", 'report_date:[20040101+TO+20131231]&limit=3')[1
 ## NA.1                                                                                                     <NA>      <NA>
 extractFDA(food1, "event", 'date_created:[20040101+TO+20131231]&limit=5')[1:5,1:5] 
 ##   report_number                            outcomes date_created
-## 1        102922                 Medically Important     20080501
-## 2        110364         Hospitalization, Disability     20090220
-## 3        115759 Patient Visited Healthcare Provider     20090717
-## 4        121609                       Other Outcome     20091225
-## 5        128962 Patient Visited Healthcare Provider     20100812
-##                                                                                              reactions date_started
-## 1 TENDERNESS, NAIL DISCOLOURATION, MYALGIA, FATIGUE, CUTANEOUS CONTOUR DEFORMITY, ARTHRALGIA, ALOPECIA     20080412
-## 2                              TREMOR, SLEEP DISORDER, PSYCHOTIC DISORDER, PRURITUS, APPETITE DISORDER     20090214
-## 3                                   VOMITING, LOSS OF CONSCIOUSNESS, INFLUENZA LIKE ILLNESS, DIARRHOEA     20090101
-## 4                                              HYPERHIDROSIS, GAIT DISTURBANCE, FEELING HOT, BLINDNESS     20081110
-## 5          TENDERNESS, GASTROENTERITIS SALMONELLA, GASTROENTERITIS, FEELING OF BODY TEMPERATURE CHANGE     20100717
+## 1        115666 Patient Visited Healthcare Provider     20090715
+## 2        100210 Patient Visited Healthcare Provider     20080207
+## 3        112318                       Other Outcome     20090423
+## 4        130489                       Other Outcome     20101001
+## 5        136173                 Medically Important     20110301
+##                                                                                                                                                               reactions
+## 1                                                                                                                                                 SWELLING, PHARYNGITIS
+## 2 WEIGHT DECREASED, TREMOR, SKIN DISCOLOURATION, PRURITUS, PARAESTHESIA, LOCALISED OEDEMA, EYE IRRITATION, DIARRHOEA, CONVULSION, BURNING SENSATION, ASTHENIA, ALOPECIA
+## 3                                                                                           VOMITING, NAUSEA, MALAISE, HAEMATOCHEZIA, DIARRHOEA, CHILLS, ABDOMINAL PAIN
+## 4                                      VOMITING, THROAT IRRITATION, SNEEZING, NASOPHARYNGITIS, LETHARGY, FEELING OF BODY TEMPERATURE CHANGE, BODY TEMPERATURE INCREASED
+## 5                                                                                                                                   SARCOMA, HEADACHE, FEELING ABNORMAL
+##   date_started
+## 1           NA
+## 2           NA
+## 3           NA
+## 4           NA
+## 5           NA
 
 extractFDA(other1, query='marketing_start_date:[20040101+TO+20131231]&limit=5')[1:5,1:5] 
-##                                        proprietary_name marketing_end_date application_number_or_citation
-## 1                               North Triple Antibiotic           20171219                       part333B
-## 2                                        Salicylic Acid               <NA>                       part358B
-## 3 Clario Ultra Blue Antibacterial Foaming Skin Cleanser           20200715                       part333E
-## 4                                           Lamotrigine           20120731                     ANDA078625
-## 5                                    Losartan Potassium           20190131                     ANDA078232
-##              product_type marketing_start_date
-## 1          HUMAN OTC DRUG             20130307
-## 2          HUMAN OTC DRUG             20120105
-## 3          HUMAN OTC DRUG             20121112
-## 4 HUMAN PRESCRIPTION DRUG             20090127
-## 5 HUMAN PRESCRIPTION DRUG             20101006
+##                                         proprietary_name application_number_or_citation            product_type
+## 1             Isopropyl Rubbing Alcohol With Wintergreen                       part333A          HUMAN OTC DRUG
+## 2                        Purell Advanced Refreshing Aloe                       part333E          HUMAN OTC DRUG
+## 3 Korres Wild Rose Mineral Foundation Wrmf2 Light Spf 30                        part352          HUMAN OTC DRUG
+## 4                                                Jet Lag                           <NA>          HUMAN OTC DRUG
+## 5                                             Prednisone                     ANDA085161 HUMAN PRESCRIPTION DRUG
+##   marketing_start_date  package_ndc
+## 1             20120722 52862-009-12
+## 2             20120314 21749-705-89
+## 3             20110202 10279-120-10
+## 4             20110301 55714-1110-0
+## 5             20131120 52125-775-08
 ```
 
 ## Authors
