@@ -11,6 +11,11 @@ knitr::opts_chunk$set(collapse=TRUE, comment="##", fig.retina=2, fig.path = "REA
 
 `FDAopenR` : R package for accessing and manipulating openFDA API.
 
+<!-- badges: start -->
+  [![Travis build status](https://app.travis-ci.com/ck2136/FDAopenR.svg?branch=master)](https://travis-ci.com/ck2136/FDAopenR)
+  <!-- [![Codecov test coverage](https://codecov.io/gh//dplyr/branch/master/graph/badge.svg)](https://codecov.io/gh/tidyverse/dplyr?branch=master) -->
+<!-- badges: end -->
+
 The following functions are implemented:
 
 - ndcToString:  Converting numeric ndc values to appropriate ndc string values for open FDA API search
@@ -34,7 +39,8 @@ options(width=120)
 ### Usage
 
 ```{r}
-library(FDAopenR)
+library("FDAopenR")
+library("dplyr")
 
 # current verison
 packageVersion("FDAopenR")
@@ -47,11 +53,9 @@ drug1 <- new(Class="Drug",
           apikey="Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
 )
 device1 <- new(Class="Device",
-               reg_num="878.4370",
                apikey="Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
                )
 food1 <- new(Class="Food",
-               event_id="68589",
                apikey="Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
                )
 other1 <- new(Class="Other",
@@ -101,7 +105,6 @@ extractFDA(drug1,"ndc", "finished:true&limit=3")[1:5,1:5]
 
 extractFDA(device1,"registrationlisting",'')[1:5,1:5] 
 extractFDA(device1,"udi",'public_version_status:Update')[1:5,1:5] 
-extractFDA(device1,"udi",'has_serial_number:truelimit=10')[1:5,1:5] 
 extractFDA(device1,"pma",'decision_code:APPR&limit=3')[1:5,1:5] 
 
 extractFDA(food1, "enforcement", 'report_date:[20040101+TO+20131231]&limit=3')[1:5,1:5] 

@@ -1,12 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 `FDAopenR` : R package for accessing and manipulating openFDA API.
+
+<!-- badges: start -->
+
+[![Travis build
+status](https://app.travis-ci.com/ck2136/FDAopenR.svg?branch=master)](https://travis-ci.com/ck2136/FDAopenR)
+<!-- [![Codecov test coverage](https://codecov.io/gh//dplyr/branch/master/graph/badge.svg)](https://codecov.io/gh/tidyverse/dplyr?branch=master) -->
+<!-- badges: end -->
 
 The following functions are implemented:
 
--   ndcToString: Converting numeric ndc values to appropriate ndc string values for open FDA API search
+-   ndcToString: Converting numeric ndc values to appropriate ndc string
+    values for open FDA API search
 -   listSF: Listing Search Field Parameters
--   extractFDA: Extracts relevant information from the [open FDA API](https://open.fda.gov/apis/)
+-   extractFDA: Extracts relevant information from the [open FDA
+    API](https://open.fda.gov/apis/)
 
 ### Installation
 
@@ -20,7 +30,16 @@ devtools::install_github("ck2136/FDAopenR")
 ### Usage
 
 ``` r
-library(FDAopenR)
+library("FDAopenR")
+library("dplyr")
+## 
+## Attaching package: 'dplyr'
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
 
 # current verison
 packageVersion("FDAopenR")
@@ -36,13 +55,11 @@ drug1 <- new(Class="Drug",
 ## *** FDA Class Inspection *** 
 ## *** FDA Class Inspection Complete: APIKEYFOUND***
 device1 <- new(Class="Device",
-               reg_num="878.4370",
                apikey="Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
                )
 ## *** FDA Class Inspection *** 
 ## *** FDA Class Inspection Complete: APIKEYFOUND***
 food1 <- new(Class="Food",
-               event_id="68589",
                apikey="Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
                )
 ## *** FDA Class Inspection *** 
@@ -66,33 +83,26 @@ drug1@ndcquery
 #ndcToString(device1) # this will be an error!
 other1 <- ndcToString(other1)
 other1 %>% str(max.level=2)
-## Formal class 'Other' [package ".GlobalEnv"] with 21 slots
-##   ..@ nsdeTab            :'data.frame':  0 obs. of  0 variables
+## Formal class 'Other' [package "FDAopenR"] with 13 slots
+##   ..@ nsdeTab      :'data.frame':    0 obs. of  0 variables
 ## Formal class 'data.frame' [package "methods"] with 4 slots
-##   ..@ ndc                : num 6.38e+09
-##   ..@ package_ndc        : chr(0) 
-##   ..@ product_type       : chr(0) 
-##   ..@ prop_Name          : chr(0) 
-##   ..@ app_num            : chr(0) 
-##   ..@ url                : chr "https://api.fda.gov/"
-##   ..@ apikey             : chr "Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
-##   ..@ endpointfront      : chr "other"
-##   ..@ endpointback       : chr "nsde"
-##   ..@ searchfield        : chr(0) 
-##   ..@ aeTab              :'data.frame':  0 obs. of  0 variables
+##   ..@ ndc          : num 6.38e+09
+##   ..@ ndcquery     : chr "63824-4736-4"
+##   ..@ url          : chr "https://api.fda.gov/"
+##   ..@ apikey       : chr "Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
+##   ..@ endpointfront: chr "other"
+##   ..@ endpointback : chr "nsde"
+##   ..@ searchfield  : chr(0) 
+##   ..@ aeTab        :'data.frame':    0 obs. of  0 variables
 ## Formal class 'data.frame' [package "methods"] with 4 slots
-##   ..@ prodLab            :'data.frame':  0 obs. of  0 variables
+##   ..@ prodTab      :'data.frame':    0 obs. of  0 variables
 ## Formal class 'data.frame' [package "methods"] with 4 slots
-##   ..@ ndcTab             :'data.frame':  0 obs. of  0 variables
+##   ..@ ndcTab       :'data.frame':    0 obs. of  0 variables
 ## Formal class 'data.frame' [package "methods"] with 4 slots
-##   ..@ recTab             :'data.frame':  0 obs. of  0 variables
+##   ..@ reTab        :'data.frame':    0 obs. of  0 variables
 ## Formal class 'data.frame' [package "methods"] with 4 slots
-##   ..@ ndcquery           : chr "63824-4736-4"
-##   ..@ generic_name       : chr(0) 
-##   ..@ brand_name         : chr(0) 
-##   ..@ dosage_form        : chr(0) 
-##   ..@ dea_schedule       : chr(0) 
-##   ..@ pacakge_description: chr(0)
+##   ..@ dafTab       :'data.frame':    0 obs. of  0 variables
+## Formal class 'data.frame' [package "methods"] with 4 slots
 ```
 
 #### Search Field
@@ -102,9 +112,8 @@ listSF(drug1,"event") %>% head
 ## [1] "authoritynumb"           "companynumb"             "duplicate"               "fulfillexpeditecriteria"
 ## [5] "occurcountry"            "patient"
 listSF(drug1,"label") %>% head
-## [1] "abuse"                                 "accessories"                          
-## [3] "active_ingredient"                     "adverse_reactions"                    
-## [5] "alarms"                                "animal_pharmacology_and_or_toxicology"
+## [1] "abuse"                   "abuse_table"             "accessories"             "accessories_table"      
+## [5] "active_ingredient"       "active_ingredient_table"
 listSF(drug1,"ndc") %>% head
 ## [1] "product_id"   "product_ndc"  "spl_id"       "product_type" "finished"     "brand_name"
 
@@ -124,8 +133,8 @@ listSF(device1,"pma") %>% head
 ## [1] "advisory_committee"             "advisory_committee_description" "ao_statement"                  
 ## [4] "applicant"                      "city"                           "date_received"
 listSF(device1,"recall") %>% head
-## [1] "event_date_terminated"        "firm_fei_number"              "k_numbers"                   
-## [4] "openfda"                      "other_submission_description" "pma_numbers"
+## [1] "event_date_initiated"  "event_date_created"    "event_date_posted"     "event_date_terminated"
+## [5] "recall_status"         "recalling_firm"
 listSF(device1,"registrationlisting") %>% head
 ## [1] "establishment_type" "k_number"           "pma_number"         "products"           "proprietary_name"  
 ## [6] "registration"
@@ -148,164 +157,180 @@ listSF(other1) %>% head
 
 ``` r
 extractFDA(drug1,"event","receivedate:[20040101+TO+20081231]&limit=15")[1:5,1:5]
-##   receiptdateformat receiver      companynumb receivedateformat primarysource.qualification
-## 1               102       NA HQWYE821915MAR04               102                        <NA>
-## 2               102       NA       JACAN16471               102                           3
-## 3               102       NA    WAES 97101426               102                        <NA>
-## 4               102       NA CDN/97/00530/LEX               102                        <NA>
-## 5               102       NA USA/97/02459/LAS               102                           1
-##   primarysource.reportercountry
-## 1                          <NA>
-## 2                        CANADA
-## 3                          <NA>
-## 4                        CANADA
-## 5                          <NA>
+##   receiptdateformat receiver seriousnessdeath      companynumb receivedateformat
+## 1               102       NA                1       JACAN16471               102
+## 2               102       NA                1    WAES 97101426               102
+## 3               102       NA             <NA> CDN/97/00530/LEX               102
+## 4               102       NA             <NA> USA/97/02459/LAS               102
+## 5               102       NA             <NA>    1997002193-FJ               102
 extractFDA(drug1,"ndc", "finished:true&limit=3")[1:5,1:5] 
-##      product_ndc                   generic_name              labeler_name
-## 1      0486-1111 Potassium Phosphate, Monobasic      Beach Products, Inc.
-## 2      68084-523              Zolpidem Tartrate American Health Packaging
-## 3      68084-524             Potassium Chloride American Health Packaging
-## NA          <NA>                           <NA>                      <NA>
-## NA.1        <NA>                           <NA>                      <NA>
-##                                                                                                                                                                    packaging
-## 1               19770329, 19770329, 0486-1111-05, 0486-1111-01, 500 TABLET, SOLUBLE in 1 BOTTLE (0486-1111-05), 100 TABLET, SOLUBLE in 1 BOTTLE (0486-1111-01), FALSE, FALSE
-## 2    20190531, 20111122, 68084-523-21, 30 BLISTER PACK in 1 BOX, UNIT-DOSE (68084-523-21)  > 1 TABLET, FILM COATED, EXTENDED RELEASE in 1 BLISTER PACK (68084-523-11), FALSE
-## 3             20130205, 68084-524-01, 100 BLISTER PACK in 1 BOX, UNIT-DOSE (68084-524-01)  > 1 TABLET, FILM COATED, EXTENDED RELEASE in 1 BLISTER PACK (68084-524-11), FALSE
-## NA                                                                                                                                                                      NULL
-## NA.1                                                                                                                                                                    NULL
+##      product_ndc        generic_name                              labeler_name                           brand_name
+## 1      72342-150             Alcohol                        J.R. Watkins, LLC.            Hand Sanitizer Peppermint
+## 2      72476-916 Diphenhydramine HCl Care One (Retail Business Services, LLC.) Nighttime Sleep Aid Maximum Strength
+## 3      72572-170    Fentanyl Citrate                              Civica, Inc.                     Fentanyl Citrate
+## NA          <NA>                <NA>                                      <NA>                                 <NA>
+## NA.1        <NA>                <NA>                                      <NA>                                 <NA>
 ##      brand_name_suffix
-## 1             Original
-## 2                 <NA>
+## 1           Peppermint
+## 2     Maximum Strength
 ## 3                 <NA>
 ## NA                <NA>
 ## NA.1              <NA>
 
 extractFDA(device1,"registrationlisting",'')[1:5,1:5] 
-##                                                    establishment_type                       proprietary_name
-## 1    Sterilize Medical Device for Another Party (Contract Sterilizer) Ortho Development - ODC B2 Bipolar Cup
-## NA                                                               NULL                                   NULL
-## NA.1                                                             NULL                                   NULL
-## NA.2                                                             NULL                                   NULL
-## NA.3                                                             NULL                                   NULL
-##      registration.status_code registration.iso_country_code registration.city registration.registration_number
-## 1                           1                            US           EL PASO                          1643817
-## NA                       <NA>                          <NA>              <NA>                             <NA>
-## NA.1                     <NA>                          <NA>              <NA>                             <NA>
-## NA.2                     <NA>                          <NA>              <NA>                             <NA>
-## NA.3                     <NA>                          <NA>              <NA>                             <NA>
-##      registration.zip_code registration.owner_operator.owner_operator_number registration.owner_operator.firm_name
-## 1                    79936                                           1527821                    STERIS Corporation
-## NA                    <NA>                                              <NA>                                  <NA>
-## NA.1                  <NA>                                              <NA>                                  <NA>
-## NA.2                  <NA>                                              <NA>                                  <NA>
-## NA.3                  <NA>                                              <NA>                                  <NA>
-##      registration.owner_operator.contact_address.city registration.owner_operator.contact_address.iso_country_code
-## 1                                              Mentor                                                           US
-## NA                                               <NA>                                                         <NA>
-## NA.1                                             <NA>                                                         <NA>
-## NA.2                                             <NA>                                                         <NA>
-## NA.3                                             <NA>                                                         <NA>
+##                                proprietary_name
+## 1    Nimbus RF Multi-tined Expandable Electrode
+## NA                                         NULL
+## NA.1                                       NULL
+## NA.2                                       NULL
+## NA.3                                       NULL
+##                                                                                                   establishment_type
+## 1    Develop Specifications But Do Not Manufacture At This Facility, Complaint File Establishment per 21 CFR 820.198
+## NA                                                                                                              NULL
+## NA.1                                                                                                            NULL
+## NA.2                                                                                                            NULL
+## NA.3                                                                                                            NULL
+##      registration.registration_number registration.fei_number registration.status_code
+## 1                          3017423051              3017423051                        1
+## NA                               <NA>                    <NA>                     <NA>
+## NA.1                             <NA>                    <NA>                     <NA>
+## NA.2                             <NA>                    <NA>                     <NA>
+## NA.3                             <NA>                    <NA>                     <NA>
+##      registration.initial_importer_flag registration.reg_expiry_date_year registration.name registration.address_line_1
+## 1                                     N                              2021   STRATUS MEDICAL               32303 FM 2978
+## NA                                 <NA>                              <NA>              <NA>                        <NA>
+## NA.1                               <NA>                              <NA>              <NA>                        <NA>
+## NA.2                               <NA>                              <NA>              <NA>                        <NA>
+## NA.3                               <NA>                              <NA>              <NA>                        <NA>
+##      registration.address_line_2 registration.city registration.state_code registration.iso_country_code
+## 1                                         Magnolia                      TX                            US
+## NA                          <NA>              <NA>                    <NA>                          <NA>
+## NA.1                        <NA>              <NA>                    <NA>                          <NA>
+## NA.2                        <NA>              <NA>                    <NA>                          <NA>
+## NA.3                        <NA>              <NA>                    <NA>                          <NA>
+##      registration.zip_code registration.postal_code registration.owner_operator.firm_name
+## 1                    77354                                                Stratus Medical
+## NA                    <NA>                     <NA>                                  <NA>
+## NA.1                  <NA>                     <NA>                                  <NA>
+## NA.2                  <NA>                     <NA>                                  <NA>
+## NA.3                  <NA>                     <NA>                                  <NA>
+##      registration.owner_operator.owner_operator_number registration.owner_operator.official_correspondent.first_name
+## 1                                             10077915                                                          Lisa
+## NA                                                <NA>                                                          <NA>
+## NA.1                                              <NA>                                                          <NA>
+## NA.2                                              <NA>                                                          <NA>
+## NA.3                                              <NA>                                                          <NA>
+##      registration.owner_operator.official_correspondent.middle_initial
+## 1                                                                     
+## NA                                                                <NA>
+## NA.1                                                              <NA>
+## NA.2                                                              <NA>
+## NA.3                                                              <NA>
+##      registration.owner_operator.official_correspondent.last_name
+## 1                                                       Pelletier
+## NA                                                           <NA>
+## NA.1                                                         <NA>
+## NA.2                                                         <NA>
+## NA.3                                                         <NA>
+##      registration.owner_operator.official_correspondent.subaccount_company_name
+## 1                                                                              
+## NA                                                                         <NA>
+## NA.1                                                                       <NA>
+## NA.2                                                                       <NA>
+## NA.3                                                                       <NA>
+##      registration.owner_operator.official_correspondent.phone_number
+## 1                                                    x-385-7073029-x
+## NA                                                              <NA>
+## NA.1                                                            <NA>
+## NA.2                                                            <NA>
+## NA.3                                                            <NA>
 ##      registration.owner_operator.contact_address.address_1 registration.owner_operator.contact_address.address_2
-## 1                                          5960 Heisley Rd                                                    --
+## 1                                            32303 FM 2978                                                      
 ## NA                                                    <NA>                                                  <NA>
 ## NA.1                                                  <NA>                                                  <NA>
 ## NA.2                                                  <NA>                                                  <NA>
 ## NA.3                                                  <NA>                                                  <NA>
-##      registration.owner_operator.contact_address.state_province registration.owner_operator.contact_address.postal_code
-## 1                                                                                                                 44060
-## NA                                                         <NA>                                                    <NA>
-## NA.1                                                       <NA>                                                    <NA>
-## NA.2                                                       <NA>                                                    <NA>
-## NA.3                                                       <NA>                                                    <NA>
-##      registration.owner_operator.contact_address.state_code       registration.name registration.address_line_1
-## 1                                                        OH ISOMEDIX OPERATIONS INC         1435 ISOMEDIX PLACE
-## NA                                                     <NA>                    <NA>                        <NA>
-## NA.1                                                   <NA>                    <NA>                        <NA>
-## NA.2                                                   <NA>                    <NA>                        <NA>
-## NA.3                                                   <NA>                    <NA>                        <NA>
-##      registration.fei_number registration.initial_importer_flag registration.address_line_2 registration.postal_code
-## 1                    1643817                                  N                                                     
-## NA                      <NA>                               <NA>                        <NA>                     <NA>
-## NA.1                    <NA>                               <NA>                        <NA>                     <NA>
-## NA.2                    <NA>                               <NA>                        <NA>                     <NA>
-## NA.3                    <NA>                               <NA>                        <NA>                     <NA>
-##      registration.state_code registration.reg_expiry_date_year pma_number k_number
-## 1                         TX                              2019                    
-## NA                      <NA>                              <NA>       <NA>     <NA>
-## NA.1                    <NA>                              <NA>       <NA>     <NA>
-## NA.2                    <NA>                              <NA>       <NA>     <NA>
-## NA.3                    <NA>                              <NA>       <NA>     <NA>
+##      registration.owner_operator.contact_address.city registration.owner_operator.contact_address.state_code
+## 1                                            Magnolia                                                     TX
+## NA                                               <NA>                                                   <NA>
+## NA.1                                             <NA>                                                   <NA>
+## NA.2                                             <NA>                                                   <NA>
+## NA.3                                             <NA>                                                   <NA>
+##      registration.owner_operator.contact_address.state_province
+## 1                                                              
+## NA                                                         <NA>
+## NA.1                                                       <NA>
+## NA.2                                                       <NA>
+## NA.3                                                       <NA>
+##      registration.owner_operator.contact_address.iso_country_code
+## 1                                                              US
+## NA                                                           <NA>
+## NA.1                                                         <NA>
+## NA.2                                                         <NA>
+## NA.3                                                         <NA>
+##      registration.owner_operator.contact_address.postal_code pma_number k_number
+## 1                                                      77354             K121773
+## NA                                                      <NA>       <NA>     <NA>
+## NA.1                                                    <NA>       <NA>     <NA>
+## NA.2                                                    <NA>       <NA>     <NA>
+## NA.3                                                    <NA>       <NA>     <NA>
 extractFDA(device1,"udi",'public_version_status:Update')[1:5,1:5] 
-##      has_donation_id_number                                       mri_safety record_status is_rx is_labeled_as_nrl
-## 1                     false Labeling does not contain MRI Safety Information     Published  true             false
-## NA                     <NA>                                             <NA>          <NA>  <NA>              <NA>
-## NA.1                   <NA>                                             <NA>          <NA>  <NA>              <NA>
-## NA.2                   <NA>                                             <NA>          <NA>  <NA>              <NA>
-## NA.3                   <NA>                                             <NA>          <NA>  <NA>              <NA>
-extractFDA(device1,"udi",'has_serial_number:truelimit=10')[1:5,1:5] 
-##      has_donation_id_number                                       mri_safety record_status is_rx is_labeled_as_nrl
-## 1                     false Labeling does not contain MRI Safety Information     Published  true             false
-## NA                     <NA>                                             <NA>          <NA>  <NA>              <NA>
-## NA.1                   <NA>                                             <NA>          <NA>  <NA>              <NA>
-## NA.2                   <NA>                                             <NA>          <NA>  <NA>              <NA>
-## NA.3                   <NA>                                             <NA>          <NA>  <NA>              <NA>
+##      has_donation_id_number                                       mri_safety record_status is_labeled_as_nrl is_rx
+## 1                     false Labeling does not contain MRI Safety Information     Published             false  true
+## NA                     <NA>                                             <NA>          <NA>              <NA>  <NA>
+## NA.1                   <NA>                                             <NA>          <NA>              <NA>  <NA>
+## NA.2                   <NA>                                             <NA>          <NA>              <NA>  <NA>
+## NA.3                   <NA>                                             <NA>          <NA>              <NA>  <NA>
 extractFDA(device1,"pma",'decision_code:APPR&limit=3')[1:5,1:5] 
-##      decision_code supplement_number                  supplement_type decision_date product_code
-## 1             APPR              S058 Normal 180 Day Track No User Fee    2011-04-21          LNR
-## 2             APPR              S007                                     1985-07-10          HQL
-## 3             APPR              S244                Real-Time Process    2011-11-01          NVZ
-## NA            <NA>              <NA>                             <NA>          <NA>         <NA>
-## NA.1          <NA>              <NA>                             <NA>          <NA>         <NA>
+##      pma_number supplement_number                  applicant                street_1 street_2
+## 1       P810002              S050     St. Jude Medical, Inc.      ONE LILLEHEI PLAZA         
+## 2       P130009              S057 EDWARDS LIFESCIENCES, LLC.         One Edwards Way         
+## 3       P150013              S001 Agilent Technologies, Inc. 5301 Stevens Creek Blvd         
+## NA         <NA>              <NA>                       <NA>                    <NA>     <NA>
+## NA.1       <NA>              <NA>                       <NA>                    <NA>     <NA>
 
 extractFDA(food1, "enforcement", 'report_date:[20040101+TO+20131231]&limit=3')[1:5,1:5] 
-##            country    city
-## 1    United States Medford
-## 2    United States  Newark
-## 3    United States  Boston
-## NA            <NA>    <NA>
-## NA.1          <NA>    <NA>
-##                                                                                             reason_for_recall
-## 1    Product received from supplier is being recalled due to the potential to be contaminated with Salmonella
-## 2                                 Products have the potential to be contaminated with Listeria monocytogenes.
-## 3                                       Products contain recalled Gill's Onions due to Listeria monocytogenes
-## NA                                                                                                       <NA>
-## NA.1                                                                                                     <NA>
-##                           address_1 address_2
-## 1                2500 S Pacific Hwy          
-## 2                      170 Avenue L          
-## 3    18 Bunker Hill Industrial Park          
-## NA                             <NA>      <NA>
-## NA.1                           <NA>      <NA>
+##            country    city                      address_1
+## 1    United States Medford             2500 S Pacific Hwy
+## 2    United States  Newark                   170 Avenue L
+## 3    United States  Boston 18 Bunker Hill Industrial Park
+## NA            <NA>    <NA>                           <NA>
+## NA.1          <NA>    <NA>                           <NA>
+##                                                                                             reason_for_recall address_2
+## 1    Product received from supplier is being recalled due to the potential to be contaminated with Salmonella          
+## 2                                 Products have the potential to be contaminated with Listeria monocytogenes.          
+## 3                                       Products contain recalled Gill's Onions due to Listeria monocytogenes          
+## NA                                                                                                       <NA>      <NA>
+## NA.1                                                                                                     <NA>      <NA>
 extractFDA(food1, "event", 'date_created:[20040101+TO+20131231]&limit=5')[1:5,1:5] 
-##   report_number                                                                                   outcomes date_created
-## 1         98178                                                                                                20071120
-## 2         97634                                                    Patient Visited ER, Medically Important     20071101
-## 3         97672 Patient Visited ER, Life Threatening, Patient Visited Healthcare Provider, Hospitalization     20071101
-## 4         97702                                                                                                20071102
-## 5         97788                                   Medically Important, Patient Visited Healthcare Provider     20071106
-##                                                                reactions date_started
-## 1                                                               LETHARGY         <NA>
-## 2                                                  CHEMICAL BURN OF SKIN     20070928
-## 3                                                    BACTERIAL INFECTION         <NA>
-## 4                                                               VOMITING         <NA>
-## 5 SOMNOLENCE, COGNITIVE DISORDER, MALAISE, DYSARTHRIA, CONFUSIONAL STATE     20071101
+##   report_number                            outcomes date_created
+## 1        102922                 Medically Important     20080501
+## 2        110364         Hospitalization, Disability     20090220
+## 3        115759 Patient Visited Healthcare Provider     20090717
+## 4        121609                       Other Outcome     20091225
+## 5        128962 Patient Visited Healthcare Provider     20100812
+##                                                                                              reactions date_started
+## 1 TENDERNESS, NAIL DISCOLOURATION, MYALGIA, FATIGUE, CUTANEOUS CONTOUR DEFORMITY, ARTHRALGIA, ALOPECIA     20080412
+## 2                              TREMOR, SLEEP DISORDER, PSYCHOTIC DISORDER, PRURITUS, APPETITE DISORDER     20090214
+## 3                                   VOMITING, LOSS OF CONSCIOUSNESS, INFLUENZA LIKE ILLNESS, DIARRHOEA     20090101
+## 4                                              HYPERHIDROSIS, GAIT DISTURBANCE, FEELING HOT, BLINDNESS     20081110
+## 5          TENDERNESS, GASTROENTERITIS SALMONELLA, GASTROENTERITIS, FEELING OF BODY TEMPERATURE CHANGE     20100717
 
 extractFDA(other1, query='marketing_start_date:[20040101+TO+20131231]&limit=5')[1:5,1:5] 
-##   marketing_end_date                   proprietary_name            product_type application_number_or_citation
-## 1           20181212 Childrens Mucinex Chest Congestion          HUMAN OTC DRUG                        part341
-## 2               <NA>                       Axe Dry Clix          HUMAN OTC DRUG                        part350
-## 3           20140430             Rolaids Extra Strength          HUMAN OTC DRUG                        part331
-## 4               <NA>              Clobetasol Propionate HUMAN PRESCRIPTION DRUG                     ANDA074221
-## 5               <NA>            Laxative Enteric Coated          HUMAN OTC DRUG                        part334
-##   marketing_start_date
-## 1             20100622
-## 2             20110601
-## 3             20080501
-## 4             20100607
-## 5             20111024
+##                                        proprietary_name marketing_end_date application_number_or_citation
+## 1                               North Triple Antibiotic           20171219                       part333B
+## 2                                        Salicylic Acid               <NA>                       part358B
+## 3 Clario Ultra Blue Antibacterial Foaming Skin Cleanser           20200715                       part333E
+## 4                                           Lamotrigine           20120731                     ANDA078625
+## 5                                    Losartan Potassium           20190131                     ANDA078232
+##              product_type marketing_start_date
+## 1          HUMAN OTC DRUG             20130307
+## 2          HUMAN OTC DRUG             20120105
+## 3          HUMAN OTC DRUG             20121112
+## 4 HUMAN PRESCRIPTION DRUG             20090127
+## 5 HUMAN PRESCRIPTION DRUG             20101006
 ```
 
-Authors
--------
+## Authors
 
 -   [Chong Hoon Kim](mailto:chong.kim@ucdenver.edu)
