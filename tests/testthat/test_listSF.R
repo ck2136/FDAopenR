@@ -29,6 +29,21 @@ test_that(
     expect_true(any(grepl("id", listSF(drug1,"label"))))
     expect_true(any(grepl("components", listSF(drug1,"label"))))
     expect_true(any(grepl("alarms", listSF(drug1,"label"))))
+
+    # For Other class
+    other1 <- new(Class="Other",
+               ndc=6382447364,
+               apikey="Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
+               )
+
+    listSF(other1)  %>%
+      expect_type("character") %>%
+      expect_length(13)
+
+    expect_true(any(grepl("meta", listSF(other1,"label"))))
+    expect_true(any(grepl("package_ndc", listSF(other1,"label"))))
+    expect_true(any(grepl("proprietary_name", listSF(other1,"label"))))
+    expect_true(any(grepl("product_type", listSF(other1,"label"))))
   }
 )
 

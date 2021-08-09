@@ -6,7 +6,7 @@
 #'
 #' @seealso             \url{https://open.fda.gov/apis/drug/ndc/} for the actual
 #' API description from openFDA. \code{\link{jsonlite}} for accessing API.
-#' @param  Obj          An Obj of class FDA or child thereof. 
+#' @param  Obj          An Obj of class FDA or child thereof.
 #' @param  endpointtype The endpoint after the class endpoint. For example,
 #' If the \code{Obj} is of type indicating the endpoint for the specific class.
 #' For example, for the class \code{Drug}, the endpointtype may be \code{"event"}.
@@ -45,9 +45,6 @@ setMethod(
               # - - - - - - - - - - - - - - - - - - - - - #
               # Set endpoint back url
               # - - - - - - - - - - - - - - - - - - - - - #
-              if(length(Obj@apikey)==0){
-                  stop("Please Enter API Key:  Obj@apikey <- apikey")
-              }
               accesspoint <- paste0(
                                     Obj@url, # base url
                                     Obj@endpointfront,"/", # endpoint front
@@ -55,7 +52,7 @@ setMethod(
                                     ".json?api_key=",Obj@apikey, # api key
                                     "&search=",query # search query
                                     )
-                                    
+
               req <- fromJSON(accesspoint,...)
               # - - - - - - - - - - - - - - - - - - - - - #
               # Retrieve String using GET
@@ -75,9 +72,6 @@ setMethod(
               # - - - - - - - - - - - - - - - - - - - - - #
               # Set endpoint back url
               # - - - - - - - - - - - - - - - - - - - - - #
-              if(length(Obj@apikey)==0){
-                  stop("Please Enter API Key:  Obj@apikey <- apikey")
-              }
               accesspoint <- paste0(
                                     Obj@url, # base url
                                     Obj@endpointfront,"/", # endpoint front
@@ -85,7 +79,7 @@ setMethod(
                                     ".json?api_key=",Obj@apikey, # api key
                                     "&search=",query # search query
                                     )
-                                    
+
               req <- fromJSON(accesspoint,...)
               # - - - - - - - - - - - - - - - - - - - - - #
               # Retrieve String using GET

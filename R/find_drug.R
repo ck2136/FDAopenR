@@ -43,7 +43,7 @@ find_drug <- function(
   ) {
     stop(
       "Must Enter One of the Following Information:
-        1) bname 2) gname 3) dea_schedule 4) query using API syntax
+        1) ndc code 2) bname 3) gname 4) dea_schedule 5) query using API syntax
        * Information of dea_schedule: https://www.deadiversion.usdoj.gov/schedules/orangebook/c_cs_alpha.pdf
        * API syntax: https://open.fda.gov/apis/drug/ndc/example-api-queries/
       "
@@ -88,7 +88,7 @@ find_drug <- function(
           'https://api.fda.gov/drug/ndc.json',
           query = list(
             search = utils::URLdecode(
-              paste0(search_ndc,':','"',ndcval,'"')
+              paste0(search_ndc,'=',ndcval)
             ),
             limit = limit
           )

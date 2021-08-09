@@ -27,6 +27,20 @@ test_that(
     expect_true(any(grepl("patient", names(extractedinfo))))
     expect_true(any(grepl("serious", names(extractedinfo))))
 
+    # For Other class
+    other1 <- new(Class="Other",
+               ndc=6382447364,
+               apikey="Y3CgaZj67AotB7b4XLhzHJTY7oBWKUC3u1fYulw8"
+               )
+
+    extractotherinfo <- extractFDA(other1, query='marketing_start_date:[20040101+TO+20131231]&limit=5')[1:5,1:5]
+    expect_is(extractotherinfo, "data.frame")
+    expect_true(any(grepl("proprietary_name", names(extractotherinfo))))
+    expect_true(any(grepl("marketing", names(extractotherinfo))))
+    expect_true(any(grepl("application_number", names(extractotherinfo))))
+    expect_true(any(grepl("product_type", names(extractotherinfo))))
+    expect_true(any(grepl("marketing_start", names(extractotherinfo))))
+
   }
 )
 
